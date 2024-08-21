@@ -1,8 +1,10 @@
 # Category Theory
-
-(JUST BUZZ WORDS WHICH I WAS ABLE GET FROM READING ABOUT THESE TOPICS 
-....Type Theory, lambda Calculus, Homotopy Type theory )
-## Chapter 1 (Introduction)
+(PLEASE REFER CODE SNIPPETS WHICH ARE PROVIDED ACCORDING TO CHAPTERS IN GITHUB REPO)
+```
+(Buzz words which i learned during this whole course in future i will try to upload on these topic
+Type Theory, lambda Calculus, Homotopy Type theory ,The Magical Number Seven Plus or Minus Two )
+```
+## Chapter 1 (Category: The Essence of Composition )
 
 ![logo](https://lifethroughamathematicianseyes.wordpress.com/wp-content/uploads/2016/02/associativity.png)
 
@@ -47,9 +49,12 @@ synatx is just grammar where as semantics is totally binded with language ...sem
 - so id<sub>a</sub>.f means f after id ....which will give me f ***(Left identity)***
 - so g.id<sub>a</sub> means id after g ....which will give me g ***(Right identity)***
 
- ***(Right Identity ≠ left identity (it can be equal but generally that is not the case))***
+***(Right Identity ≠ left identity (it can be equal but generally that is not the case))***
 ---
 
+### Properties of composition
+1. Composition is associative(associative ka matlab commutative nhi hota hai .....(a+b)+c=a+(b+c) ye associative hai ....a+b =b+a ye commutative hai)
+2. For every object A there is an arrow which is a unit of composition(identity mohtarma :) honi chiye)
 
 ### Defination
 - **Category**  is bunch of objects 
@@ -57,7 +62,36 @@ synatx is just grammar where as semantics is totally binded with language ...sem
     whats an object ? I cant Tell, it has no properties it has no structure. It like a atom or a point.....basically object hai hi kuch nhi but morphism ke endpoint ko kuch naam dena tha to basically ye naam de diya 
 - **morphism** arrows are called morphism
 
+Category theory is extreme in the sense that it actively discourages us from looking inside the objects. An object in category theory is an abstract nebulous entity. All you can ever know about it is how it relates to other object — how it connects with them using arrows. This is how internet search engines rank web sites by analyzing incoming and outgoing links (except when they cheat). In object-oriented programming, an idealized object is only visible through its abstract interface (pure surface, no volume), with methods playing the role of arrows. The moment you have to dig into the implementation of the object in order to understand how to compose it with other objects, you’ve lost the advantages of your programming paradigm.
 
-### Axioms  (Laws of category theory)
 
-#### 
+
+
+
+## CH -2 (Types and Functions)
+(PLEASE REFER CODE SNIPPETS WHICH ARE PROVIDED ACCORDING TO CHAPTERS IN GITHUB REPO)
+- static vs dynamic
+- strong vs weak typing
+
+in static type language type mismatches are discovered at compile time where as in dynamic type language it is discovered at runtime......language creator does not make a language a 100% static type because it loose all its flexibilty
+
+strong typed mean if we have declared some variable type then we cannot change it at runtime but in weak typed language we can change it
+
+
+****the great thing is that there is a category of sets, which is called Set, and we’ll just work with it. In Set, objects are sets and morphisms (arrows) are functions....it is a special thing because remember the defination of object we cannot look inside the object but this says we can look inside it but it does not break any rule because we are not breaking it into subcategory ....identity function maps each element of a set to itself****
+
+
+### operational semantics vs denotional semantics
+- There are formal tools for describing the semantics of a language but, because of their complexity, they are mostly used with simplified academic languages, not real-life programming behemoths. One such tool called operational semantics describes the mechanics of program execution. It defines a formalized idealized interpreter. The semantics of industrial languages, such as C++, is usually described using informal operational reasoning, often in terms of an “abstract machine.”
+
+- But there is an alternative. It’s called denotational semantics and it’s based on math. In denotational semantics every programing construct is given its mathematical interpretation. With that, if you want to prove a property of a program, you just prove a mathematical theorem. You might think that theorem proving is hard, but the fact is that we humans have been building up mathematical methods for thousands of years, so there is a wealth of accumulated knowledge to tap into. Also, as compared to the kind of theorems that professional mathematicians prove, the problems that we encounter in programming are usually quite simple, if not trivial.
+
+### pure vs impure function 
+
+Pure functions have a lot of benefits. Whenever possible, good developers try to use pure functions instead of impure functions. Remember, pure functions:
+- Return the same result if given the same arguments. They are deterministic.
+- Do not change the external state of the program. For example, they do not change any variables outside of their scope.
+- Do not perform any I/O operations (like reading from disk, accessing the internet, or writing from the console).
+***REMEMBER PURE FUNCTION CAN BE MEMOIZED OR YOU CAN SAY IT CAN BE REPLACED WITH ITS RETURNING VALUE AND IT WILL NOT CHANGE ANYTHING***
+  
+
