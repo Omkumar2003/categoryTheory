@@ -49,12 +49,30 @@ synatx is just grammar where as semantics is totally binded with language ...sem
 - so id<sub>a</sub>.f means f after id ....which will give me f ***(Left identity)***
 - so g.id<sub>a</sub> means id after g ....which will give me g ***(Right identity)***
 
-***(Right Identity ≠ left identity (it can be equal but generally that is not the case))***
+    ***(Right Identity ≠ left identity (it can be equal but generally that is not the case))***
 ---
 
 ### Properties of composition
-1. Composition is associative(associative ka matlab commutative nhi hota hai .....(a+b)+c=a+(b+c) ye associative hai ....a+b =b+a ye commutative hai)
-2. For every object A there is an arrow which is a unit of composition(identity mohtarma :) honi chiye)
+1. Composition is ***associative*** (associative ka matlab commutative nhi hota hai .....(a+b)+c=a+(b+c) ye associative hai ....a+b =b+a ye commutative hai)
+
+```
+f::a->b 
+g::b->c
+h::c->d
+
+h.(g.f) == (h.g)f == h.g.f
+```
+
+2. For every object A there is an arrow which is a ***unit*** of composition(identity mohtarma :) honi chiye)
+
+```
+om1 x = x*2
+main = do 
+        let y= 5
+        print ((om1.id) y == om1 y) --left id
+        print ((id.om1) y == om1 y) -- right id
+```
+
 
 ### Defination
 - **Category**  is bunch of objects 
@@ -70,15 +88,49 @@ Category theory is extreme in the sense that it actively discourages us from loo
 
 ## CH -2 (Types and Functions)
 (PLEASE REFER CODE SNIPPETS WHICH ARE PROVIDED ACCORDING TO CHAPTERS IN GITHUB REPO)
-- static vs dynamic
-- strong vs weak typing
+``` 
+ static vs dynamic
+ strong vs weak typing
+```
+     
+- static - type checcking at compile time
+- dynamic - type checking at run time
+- strict - if variable is made then its type cannot change
+- weak - its type can change after declaration
 
-in static type language type mismatches are discovered at compile time where as in dynamic type language it is discovered at runtime......language creator does not make a language a 100% static type because it loose all its flexibilty
+### Bottom or _|\_
+#### error
+logic mein galti
+#### exception
+basically its not our fault , but it due to the surrounding code
 
-strong typed mean if we have declared some variable type then we cannot change it at runtime but in weak typed language we can change it
+***bottom is just a concept it means runtime error, it is given by abnormal termination of program***
+
+```
+error "om kumar"
+```
+
+### _|\_ vs _ vs void  vs undefined vs () vs return
+
+- ***_|\_*** - bottom is just a concept it means runtime error, it is given by abnormal termination of program
+- ***_*** -program is forcing us to take value , but we know we are not gonna use it , then "_" is used to ignore value
+- ***void*** -  we use the funtion name "absurd" when dealing with void ,void means kuch nhi exist hi nhi krta  
+```
+absurd :: void ->a
+absurd _ = error "evol"
+```
+- ***return*** - return takes parameter which do io inside it 
+- ***()*** - unit type , can be passed as parametr as well as return value 
+- ***undefined*** - it is used for abnormal termination
 
 
-****the great thing is that there is a category of sets, which is called Set, and we’ll just work with it. In Set, objects are sets and morphisms (arrows) are functions....it is a special thing because remember the defination of object we cannot look inside the object but this says we can look inside it but it does not break any rule because we are not breaking it into subcategory ....identity function maps each element of a set to itself****
+### Hask vs Set
+
+bottom means abnormal termination , whihc means function might not even give any value 
+
+- ***Set*** - set is connected to other set with relation(function or morphism), there is no guarantee that the function will always give some value because of the presence of Bottom
+- ***Hask*** - there is no guarante of return value existing, because of that hask is special type of set 
+
 
 
 ### operational semantics vs denotional semantics

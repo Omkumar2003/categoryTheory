@@ -3,6 +3,9 @@
 main:: IO ()
 main = do -- do is used for defining multiple statements and make it into a single expression
         let ptaNhi = temp2 om temp 
+        let y = 5
+        print ((om.id) y == om y) --left id
+        print ((id.om) y == om y) -- right id
         putStrLn ("hello  world") -- simple hello world 
         putStrLn (show (om 5)) -- om is a function which takes an integer and returns an integer
         putStrLn (show (temp 8))
