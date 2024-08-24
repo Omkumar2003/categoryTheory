@@ -145,5 +145,91 @@ Pure functions have a lot of benefits. Whenever possible, good developers try to
 - Do not change the external state of the program. For example, they do not change any variables outside of their scope.
 - Do not perform any I/O operations (like reading from disk, accessing the internet, or writing from the console).
 ***REMEMBER PURE FUNCTION CAN BE MEMOIZED OR YOU CAN SAY IT CAN BE REPLACED WITH ITS RETURNING VALUE AND IT WILL NOT CHANGE ANYTHING***
-  
+
+
+## Ch- 3 (Categories Great and Small)
+
+### Category with no objects
+it is important when we are dealing with category of categories
+
+## Free category 
+**Two rules**
+- make identity of each objects
+- make composition of each objects
+
+### Transitive, Symmetric, Reflexive in sets
+
+- **Cardinality** - total number of relation
+- **Transitive** - In Set A x A where relation R ... if (a,b) and (b,c) is present then (a,c) shoul be present
+- **Symmetric** - if (a,b) is there than (b,a) should be there
+- **Reflexive** - relation to itself (a,a)
+
+### PreOrder vs PartialOrder vs TotalOrder
+- **PreOrder**
+
+ ```
+Reflexive
+could be symmetric or Asymmetric
+Transative
+```
+- **PartialOrder** 
+```
+Reflexive
+Asymmetric
+Transative
+```
+
+- **TotalOrder**
+```
+Reflexive
+Asymmetric
+Transative
+All should be comparable
+```
+
+***Every PreOrder is a PartialOrder and every PartialOrder is a TotalOrder***
+
+### How PreOrder, PartialOrder ,TotalOrder can be helpfull in programming?
+
+- PreOrder - type auto coercision
+- PartialOrder - oops inheritance
+- TotalOrder - we can do sorting because all element inside that list are comparable
+
+
+### Hasse diagram
+
+**MOST IMPORTANT IT IS LIKE UML BUT FOR FUNCTIONAL**
+**https://www.youtube.com/watch?v=i8XeVATqeag&t**
+
+
+### Subtyping and Supertyping
+
+it is very similar to OOPS parent child relation
+
+suppose CAT is ANIMAL
+**Whenevr we have to use ANIMAL we can just interchange it with CAT**
+
+### Hom-set
+
+set of morphism from object a to b denoted by ```C(a,b)``` or ```Hom(a,b)```
+
+### Thin category
+
+preorder category is known as thin ...where there is atmost 1 morphism going from any object a to any object b
+
+### homSet with Thin Category 
+ 
+every homeSet in preOrder(THIN) is **empty or singleton** . this include ```homeSet (a,a)```
+
+cycles are forbidden in partail order but preorder have it 
+
+
+### Monoid 
+
+**3 Rules**
+-  operation which we are doing should include 2 object at a time
+- operation should be associative
+- one special element unit
+
+example -string concatenation where neutral element is  ""
 
