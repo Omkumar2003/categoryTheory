@@ -585,4 +585,26 @@ which is an element of C(a', b').
 
 As you can see, the hom-functor is a special case of a profunctor.
 
+## Ch- 9 (Function Types)
+
+#### Function Types as Morphisms:
+ Unlike basic types such as Integer or Bool, which are sets of elements, a function type 
+a→b represents a set of morphisms between two objects 
+a and b in a category. In the category of sets (Set), these morphisms are functions, and the collection of all such morphisms is itself a set.
+
+### Hom-Sets and Internal Hom-Sets:
+ In general categories, hom-sets (sets of morphisms between objects) may not be objects within the same category. However, in Set, hom-sets are sets themselves. To define function types universally across categories, we use internal hom-sets, which are objects representing these hom-sets within a category.
+
+### Universal Construction: 
+The universal construction of a function type involves finding an object 
+a→b (function object) and a morphism eval that captures the application of functions. Given an object z with a morphism g from z×a to b, there is a unique morphism h from z to a→b that factors g through eval. This construction is crucial in defining function types in various categories.
+
+### Currying:
+ The process of converting a function of two variables into a function returning another function (and vice versa) is known as currying. This concept is intrinsic to functional programming languages like Haskell, where functions of multiple arguments are interpreted as functions returning functions.
+
+### Exponentials and Cartesian Closed Categories:
+ Function types can be seen as exponentials in category theory. A category that supports products, terminal objects, and exponentials is called a cartesian closed category, and it serves as a model for typed lambda calculus, foundational to programming languages.
+
+### Practical Implications: 
+These theoretical concepts have practical applications in programming, particularly in functional languages like Haskell. The Curry-Howard isomorphism connects types with logical propositions, highlighting the deep relationship between logic, mathematics, and programming.
 
