@@ -410,5 +410,28 @@ If you want to understand the box’s content, you just look and see both items.
 You only get one item at a time, and you need a label to understand what you have.
 There’s no straightforward way to see both items together. You need to check which label is present to understand what’s in it
 
+## Ch-6 (Algebraic Data Types)
+
+we make data type with data keyword
+
+### Sum Type
+
+it is like a enum in imperative language
+
+```
+data om = Car | Bat | Toy
+```
 
 
+### Product Types
+
+```
+data om a = om1 a 
+```
+
+parametrized data type ...we use them when we have to make data structure with a genreric (genric class with differnet constructors in java)..............or you can can we make parametrized constructor so that we can have parent which will decide which constructor(child) to choose acording to the parameter ...it is just an umbrella for differnt child
+
+### Sum with Product type
+```
+data Either a b = Left a | Right b
+```
