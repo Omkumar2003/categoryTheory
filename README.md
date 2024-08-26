@@ -414,6 +414,19 @@ There’s no straightforward way to see both items together. You need to check w
 
 we make data type with data keyword
 
+### Records
+Let’s have a look at a simple example. We want to describe chemical elements by combining two strings, name and symbol; and an integer, the atomic number; into one data structure. We can use a tuple (String, String, Int) and remember which component represents what. We would extract components by pattern matching, as in this function that checks if the symbol of the element is the prefix of its name (as in He being the prefix of Helium):
+```
+startsWithSymbol :: (String, String, Int) -> Bool
+startsWithSymbol (name, symbol, _) = isPrefixOf symbol name
+```
+
+This code is error prone, and is hard to read and maintain. It’s much better to define a record:
+```
+data Element = Element { name         :: String
+                       , symbol       :: String
+                       , atomicNumber :: Int }
+```
 ### Sum Type
 
 it is like a enum in imperative language
@@ -435,3 +448,38 @@ parametrized data type ...we use them when we have to make data structure with a
 ```
 data Either a b = Left a | Right b
 ```
+
+## CH-7 (Functor)
+
+so first let recap
+- **objects** - are like points in set theory or Types (we can peek inside it) but cannot decompose it
+- **Arrow** - morphism or function whihc connects 2 objects
+- **category** - Category  contains objects and Arrows
+- **Functor** - Suppose there are 2 categories and in the 1st category there is an object now we want To portray the same object but in different category but object which would  portraid shoul be slightly modified......But here is also a condition the relationships for the morphism the first book should have in its category it should also be portrayed in the target category...**So Functar is a function which maps relationship in the different category**
+-**endofunctor** -There are no two categories in this It is just a single catering you can visualise this by going outside and coming back in the category everything else is same...**In programming we use endofuncters**
+
+- Maybe as a functor
+```
+f’ :: Maybe a -> Maybe b
+f’ Nothing = Nothing
+f’ (Just x) = Just (f x)
+
+fmap :: (a -> b) -> (Maybe a -> Maybe b)
+```
+
+- List as a Functor
+```
+data List a = Nil | Cons a (List a)
+fmap :: (a -> b) -> (List a -> List b)
+fmap f (Cons x t) = Cons (f x) (fmap f t)
+
+instance Functor List where
+    fmap _ Nil = Nil
+    fmap f (Cons x t) = Cons (f x) (fmap f t)
+
+```
+
+### Functor Composition
+
+Functor can be composed in the same manner as we do simple morphism and functions
+
