@@ -483,3 +483,106 @@ instance Functor List where
 
 Functor can be composed in the same manner as we do simple morphism and functions
 
+
+
+## Ch-8 (Functor ka kaal chitha)
+
+### What is a Bifunctor?
+Think of a bifunctor as a **functor that works with two types of data at once**. Just as a regular functor transforms data in one type, a bifunctor transforms data in two types simultaneously.
+
+**Functor:** Imagine a machine that takes a single type of ingredient (like apples) and transforms it into another type (like apple pie). This machine knows how to work with one ingredient at a time.
+
+**Bifunctor:** Now imagine a more complex machine that can handle two types of ingredients (like apples and oranges) and transforms them into something new (like a fruit salad). This machine works with two types of ingredients together.
+
+```
+class Bifunctor f where
+    bimap :: (a -> c) -> (b -> d) -> f a b -> f c d
+
+first :: (a -> c) -> f a b -> f c b
+first g = bimap g id
+
+second :: (b -> d) -> f a b -> f a d
+second = bimap id
+
+instance Bifunctor (,) where
+    bimap f g (x, y) = (f x, g y)
+
+instance Bifunctor Either where
+    bimap f _ (Left x)  = Left (f x)
+    bimap _ g (Right y) = Right (g y)
+
+```
+
+### Covariant Functors
+
+Imagine you have a machine that takes an input, does something to it, and then produces an output. For example, you might have a machine that takes a number and doubles it. This machine represents a functor because it transforms input values into output values.
+
+**Covariant Functor:** Think of a covariant functor as a machine where you can change how you process the output but not the input. For example, if you have a functor that works on lists, you can map a function over the list to change each item. This is a way to "fmap" (apply a function to each item) while keeping the structure (the list) the same.
+
+```
+instance Functor Maybe where
+    fmap f (Just x) = Just (f x)
+    fmap _ Nothing  = Nothing
+```
+
+### Contravariant Functors
+contravariant functors, which are a bit different. Imagine a machine that takes an output and translates it into something else, but you can’t change the input directly. Instead, you adjust how you interpret the output based on what you want.
+
+**Contravariant Functor:** This is like having a machine where you change how you interpret the inputs based on what the machine can produce. If you have a function that transforms outputs, you can modify how the inputs should be handled accordingly.
+In Haskell, contravariant functors work with functions that reverse the direction of transformation. For example, if you have a function that takes an output and maps it to something else, you can create a contravariant functor to handle how you interpret this function for different inputs.
+
+```
+class Contravariant f where
+    contramap :: (b -> a) -> f a -> f b
+```
+
+
+### ProFunctor
+
+Imagine you have a tool that can transform data in two different ways:
+
+- *Input Transformation:* How you handle or process the input data.
+
+- *Output Transformation:* How you handle or process the output data.
+
+A profunctor is like a versatile tool that can handle both transformations simultaneously:
+
+- It changes how it processes input data.
+- It changes how it processes output data.
+
+**Profunctors vs Functors**
+
+**Functor:** Think of a functor as a machine that can take a type of data and transform it, but only in one direction—specifically, transforming the output while keeping the input structure the same. For example, you have a functor that works on lists, so you can change what each item in the list looks like but not how the list itself is structured.
+
+**Profunctor:** Now, imagine a more flexible machine that can transform both the input and output. This is what a profunctor does. It can change how data is processed both when it's coming in and going out.
+0I k
+
+```
+class Profunctor p where
+  dimap :: (a -> b) -> (c -> d) -> p b c -> p a d
+  lmap :: (a -> b) -> p b c -> p a c
+  rmap :: (b -> c) -> p a b -> p a c
+
+instance Profunctor (->) where
+  dimap ab cd bc = cd . bc . ab
+  lmap = flip (.)
+  rmap = (.)
+
+```
+**The Hom-Functor** - The above examples are the reflection of a more general statement that the mapping that takes a pair of objects a and b and assigns to it the set of morphisms between them, the hom-set C(a, b), is a functor. It is a functor from the product category Cop×C to the category of sets, Set.
+
+Let’s define its action on morphisms. A morphism in Cop×C is a pair of morphisms from C:
+```
+f :: a'→ a
+g :: b → b'
+```
+The lifting of this pair must be a morphism (a function) from the set C(a, b) to the set C(a', b'). Just pick any element h of C(a, b) (it’s a morphism from a to b) and assign to it:
+```
+g ∘ h ∘ f
+```
+
+which is an element of C(a', b').
+
+As you can see, the hom-functor is a special case of a profunctor.
+
+
