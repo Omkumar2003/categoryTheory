@@ -233,3 +233,66 @@ cycles are forbidden in partail order but preorder have it
 
 example -string concatenation where neutral element is  ""
 
+***Rememeber monoid is a condition which you have to prove that it is a monoid .........so the answer of it is a monoid or not is a boolean***
+
+```
+-- java mein ek class bna monoid naam ki 2 data member memepty and mappend ke saath .ek aur data member bna ..jo ye confirm kre ki wo monid hai ya nhi
+instance Monoid String where
+    mempty = ""
+    mappend = (++)
+```
+
+
+## Ch-4 ( Kleisli Categories )
+
+chapter ka naam iss chapter ke last mein declare kra jaayega
+
+
+### **Question** - Make a logging system
+**Ans** The most simple approach for an imperative programmer is to make a global variable and Constantly updated it
+
+```
+string logger;
+
+bool negate(bool b) {
+     logger += "Not so! ";
+     return !b;
+}
+```
+But it is accessing the global variable we don't want that it is a impure function and it is hard to debug
+
+
+#### There are 2 approaches to this 
+
+##### 1st approach (doing impurity in 1 place)
+- Every function should return two things, First thing which is it is supposed to return and the second thing is the string which explains what this function does....
+- By having this approach we can easily memorise it even if we have 3 4 condition inside that function we can easily memorise it
+- Now there are bunch of functions and now we will go in a seprate function and add  all the function Second return value sequentialy
+- Now that's a good system , But there is a problem you have to manually add function sequentially in the separate function which can be hard
+
+##### 2nd approach
+- Every function should Take two  things...First but it is supposed to take and second the previous function log
+- This creates a piping mechanism where The logs are concatenated when it goes through the functions
+- Now in last function everything comes to an end 
+
+
+### The Writer Category
+I haskell 
+```
+type Writer a = (a, String)
+
+a -> Writer b
+
+(>=>) :: (a -> Writer b) -> (b -> Writer c) -> (a -> Writer c)
+
+m1 >=> m2 = \x -> 
+    let (y, s1) = m1 x
+        (z, s2) = m2 y
+    in (z, s1 ++ s2)
+```
+
+### Kleisli Categories
+
+- this logging system was a exmaple of klesili category
+- Morphisms from type A to type B are functions that go from A to a type derived from B using the particular embellishment. Each Kleisli category defines its own way of composing such morphisms, as well as the identity morphisms with respect to that composition. (Later we’ll see that the imprecise term “embellishment” corresponds to the notion of an endofunctor in a category.)
+- The particular monad that I used as the basis of the category in this post is called the writer monad and it’s used for logging or tracing the execution of functions.
