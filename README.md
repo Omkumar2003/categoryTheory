@@ -608,3 +608,41 @@ a→b (function object) and a morphism eval that captures the application of fun
 ### Practical Implications: 
 These theoretical concepts have practical applications in programming, particularly in functional languages like Haskell. The Curry-Howard isomorphism connects types with logical propositions, highlighting the deep relationship between logic, mathematics, and programming.
 
+## Ch- 10 (Natural transformation)
+
+
+Natural transformations are a way to compare two different ways of translating between categories (using functors). Think of them as "bridges" connecting two functors.
+For every object in the first category, a natural transformation gives us a way to translate objects and arrows from one functor’s translation to another.
+
+### How Do They Work?
+
+For each object in the first category, there is a morphism (an arrow) in the second category that connects the functor's output for that object to the other functor's output.
+The important rule here is that this mapping should work consistently with how functors translate arrows between objects.
+### In Programming Languages:
+
+Functors in programming (like in Haskell) are often type constructors that map types to types and functions to functions.
+
+
+A natural transformation in programming is a function that works uniformly across all types, ensuring that the structure is preserved. For example, in Haskell, polymorphic functions between functors always satisfy a certain condition called "naturality."
+Functor Categories
+
+### What Is a Functor Category?
+
+Functor categories are like meta-categories where the objects are functors and the arrows are natural transformations between these functors.
+This category can be seen as a higher-level structure where we handle functors and their relationships as objects and morphisms.
+
+### Two-Kinds of Composition
+#### Vertical Composition:
+This is when we compose natural transformations between functors in a straightforward manner. Think of it as chaining up transformations.
+#### Horizontal Composition:
+This is a more complex composition where we combine natural transformations that act on different functors but are related through a common category.
+
+### Higher-Level Concepts
+#### 2-Categories:
+In more advanced category theory, functors and natural transformations themselves form a 2-category. Here, we have:
+- Objects: Categories.
+- 1-morphisms: Functors between categories.
+- 2-morphisms: Natural transformations between functors.
+#### Composition in 2-Categories:
+
+There are two types of composition (vertical and horizontal) that interact in specific ways. This forms a rich structure where we can explore complex relationships between categories.
